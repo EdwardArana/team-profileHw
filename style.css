@@ -1,0 +1,11 @@
+* {
+    box-sizing: border-box;
+}
+
+.jumbotron {
+
+    color: aquamarine;
+
+    background-color: black;
+
+}
