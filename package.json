@@ -1,12 +1,8 @@
 {
-  "name": "team-profilehw",
+  "name": "team-profileHw",
   "version": "1.0.0",
   "description": "",
-  "main": "employee.js",
-  "dependencies": {},
-  "devDependencies": {
-    "jest": "^26.6.3"
-  },
+  "main": "Employee.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -14,10 +10,14 @@
     "type": "git",
     "url": "git+https://github.com/EdwardArana/team-profileHw.git"
   },
+  "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/EdwardArana/team-profileHw/issues"
   },
-  "homepage": "https://github.com/EdwardArana/team-profileHw#readme"
+  "homepage": "https://github.com/EdwardArana/team-profileHw#readme",
+  "devDependencies": {
+    "jest": "^26.6.3"
+  }
 }
