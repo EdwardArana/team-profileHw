@@ -52,6 +52,31 @@ inquirer
 
             })
     }
+    else if(answers.role==="Manger") {
+      inquirer
+        .prompt([
+          {
+            type: 'input',
+            name: 'officeNum',
+            message:'Input your office number.'
+
+          }
+        ])
+
+    }
+    else if(answers.role==="Engineer") {
+      inquirer
+        .prompt([
+          {
+            type: 'input',
+            name: 'gitHub',
+            message:'Input your gitHub name.'
+
+          }
+        ])
+
+    }
+    
 })
   .catch(error => {
 
