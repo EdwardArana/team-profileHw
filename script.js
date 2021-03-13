@@ -1,10 +1,17 @@
 const inquirer = require('inquirer');
 
+const Employee = require("./lib/Employee");
+
 const Manager = require("./lib/Manager");
 
-const manager = new Manager("Jared", 1, "jerd@jerd",1)
+const Intern = require("./lib/Intern");
 
-console.log(manager.getName())
+const Engineer = require("./lib/Engineer");
+
+const path = require("path");
+
+const fs = require("fs");
+
 
 
 inquirer
@@ -62,6 +69,10 @@ inquirer
 
           }
         ])
+        .then(answers => {
+          
+          console.log(answers)
+        })
 
     }
     else if(answers.role==="Engineer") {
@@ -74,6 +85,10 @@ inquirer
 
           }
         ])
+        .then(answers => {
+          
+          console.log(answers)
+        })
 
     }
     
