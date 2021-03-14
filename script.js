@@ -36,7 +36,7 @@ inquirer
         type: 'list',
         name: 'role',
         message: 'What role are you?',
-        choices: ['Manager', 'Intern', 'Eng'],
+        choices: ['Manager', 'Intern', 'Engineer', 'New Role'],
     }
     /* Pass your questions in here */
   ])
@@ -59,7 +59,7 @@ inquirer
 
             })
     }
-    else if(answers.role==="Manger") {
+    else if(answers.role==="Manager") {
       inquirer
         .prompt([
           {
@@ -91,8 +91,32 @@ inquirer
         })
 
     }
+    else if(answers.role==="New Role") {
+      inquirer
+        .prompt([
+          {
+            type: 'list',
+            name: 'addMembers',
+            choices: ['Add Engineer', 'Add Intern', 'Add Manager', 'No, team is complete'],
+            message: 'Which role would you like to add?'
+          }
+        ])
+        .then(answers => {
+          console.log(answers);
+          if(answers.role==='Add Engineer') {
+            console.log(Engineer)
+          } else if(answers.role==='Add Intern') {
+            console.log(Intern)
+          } else if(answers.role==='Add Manager') {
+            console.log(Manager)
+          } else {
+            console.log(answers)
+          }
+        })
+    }
     
 })
+
   .catch(error => {
 
     console.log(error)
