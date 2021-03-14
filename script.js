@@ -102,15 +102,25 @@ inquirer
           }
         ])
         .then(answers => {
+
           console.log(answers);
+
           if(answers.role==='Add Engineer') {
+
             console.log(Engineer)
+
           } else if(answers.role==='Add Intern') {
+
             console.log(Intern)
+
           } else if(answers.role==='Add Manager') {
+
             console.log(Manager)
+
           } else {
+            
             console.log(answers)
+
           }
         })
     }
