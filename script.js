@@ -8,132 +8,112 @@ const Intern = require("./lib/Intern");
 
 const Engineer = require("./lib/Engineer");
 
-const path = require("path");
-
 const fs = require("fs");
 
 
 
-inquirer
-  .prompt([ 
+const employees = [];
 
-    {
-        type: 'input',
-        name: 'name',
-        message: 'Input your name',
-    },
-    {
-        type: 'input',
-        name: 'id',
-        message: 'Input your id',
-    },
-    {
-        type: 'input',
-        name: 'email',
-        message: 'Input your email',
-    },
-    {
+function myGroup() {
+  
+  teamAssemble();
+}
+
+function teamAssemble() {
+
+  inquirer
+    .prompt([
+      {
         type: 'list',
         name: 'role',
-        message: 'What role are you?',
-        choices: ['Manager', 'Intern', 'Engineer', 'New Role'],
-    }
-    /* Pass your questions in here */
-  ])
-  .then(answers => {
-    console.log(answers)
-    if(answers.role==="Intern") {
-        inquirer
-            .prompt([ 
-                
-                {
-                    type: 'input',
-                    name: 'school',
-                    message: 'Input your school',
-                },
+        message: 'What is your role?',
+        choices: ['Manager', 'Intern', 'Engineer'],
+      },
+      {
+        type: 'input',
+        name: 'name',
+        message: 'What is your name?',
+      },
+      {
+        type: 'input',
+        name: 'id',
+        message: 'What is your ID number?',
+      },
+      {
+        type: 'input',
+        name: 'email',
+        message: 'What is your email address?'
+      }
+      
+    ]).then(function ({ role, name, id, email }) {
 
-            ])
-            .then(answers => {
+      let roleInformation = "";
 
-                console.log(answers)
+        if (role === 'Engineer') {
 
-            })
-    }
-    else if(answers.role==="Manager") {
-      inquirer
-        .prompt([
-          {
+            roleInformation = 'Github username';
+
+        } else if (role === 'Intern') {
+
+            roleInformation = 'School Name';
+
+        } else {
+
+            roleInformation = 'Office Phone Number';
+        }
+
+    inquirer.prompt([
+        {
             type: 'input',
-            name: 'officeNum',
-            message:'Input your office number.'
-
-          }
-        ])
-        .then(answers => {
-          
-          console.log(answers)
-        })
-
-    }
-    else if(answers.role==="Engineer") {
-      inquirer
-        .prompt([
-          {
-            type: 'input',
-            name: 'gitHub',
-            message:'Input your gitHub name.'
-
-          }
-        ])
-        .then(answers => {
-          
-          console.log(answers)
-        })
-
-    }
-    else if(answers.role==="New Role") {
-      inquirer
-        .prompt([
-          {
+            name: 'roleInfo',
+            message: `Enter team members ${roleInformation}`
+        },
+        {
             type: 'list',
-            name: 'addMembers',
-            choices: ['Add Engineer', 'Add Intern', 'Add Manager', 'No, team is complete'],
-            message: 'Which role would you like to add?'
-          }
-        ])
-        .then(answers => {
+            name: 'addTeamMembers',
+            massage: 'Would you like to additional members?',
+            choices: ['Yes', 'No']
+        }
 
-          console.log(answers);
-
-          if(answers.role==='Add Engineer') {
-
-            console.log(Engineer)
-
-          } else if(answers.role==='Add Intern') {
-
-            console.log(Intern)
-
-          } else if(answers.role==='Add Manager') {
-
-            console.log(Manager)
-
-          } else {
+    ]
+    )
+    .then(function ({roleInformation, addTeamMembers}) {
+       let teamMembers;
+       
+       console.table(roleInformation)
             
-            console.log(answers)
+       if (role === 'Engineer') {
+         
+        teamMembers = new Engineer(name, id, email, roleInformation);
 
-          }
-        })
-    }
-    
-})
+         employees.push(teamMembers)
 
-  .catch(error => {
+      } else if (role === 'Intern') {
+             
+        teamMembers = new Intern(name, id, email, roleInformation);
+            
+        employees.push(teamMembers)
 
-    console.log(error)
-    
-    if(error.isTtyError) {
-      // Prompt couldn't be rendered in the current environment
-    } else {
-      // Something else went wrong
-    }
-  });
+      } else if (role === "Manager") {
+
+        teamMembers = new Manager(name, id, email ,roleInformation);
+
+        employees.push(teamMembers)
+
+      }
+
+      if (addTeamMembers === "Yes") {
+         
+        teamAssemble()
+
+      }
+
+      console.log(teamMembers);
+
+    });
+
+});
+
+}
+
+myGroup();
